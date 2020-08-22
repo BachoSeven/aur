@@ -1,1 +1,1 @@
-# aur
+# aur PKGBUILDs
