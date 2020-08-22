@@ -1,0 +1,6 @@
+[submodule "mimi-bachoseven-git"]
+	path = mimi-bachoseven-git
+	url = ssh://aur@aur.archlinux.org/mimi-bachoseven-git.git
+[submodule "sdcv-git"]
+	path = sdcv-git
+	url = ssh://aur@aur.archlinux.org/sdcv-git.git
