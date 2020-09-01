@@ -1,5 +1,5 @@
-# Contributor: Alexandre Dantas <eu @ alexdantas DOT net>
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
+# Contributor: Alexandre Dantas <eu @ alexdantas DOT net>
 
 pkgname=bastet-xdg-git
 pkgver=0.43.2.r5.gad5de50
