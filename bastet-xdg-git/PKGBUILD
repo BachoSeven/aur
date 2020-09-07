@@ -43,3 +43,4 @@ package() {
   chmod 0664 "${pkgdir}"/var/games/bastet.scores2
   chown root:games "${pkgdir}"/var/games/bastet.scores2
 }
+# vim:set ts=2 sw=2 et:

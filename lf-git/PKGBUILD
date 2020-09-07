@@ -17,33 +17,34 @@ provides=("lf")
 conflicts=("lf")
 
 pkgver() {
-       cd "${srcdir}/${_pkgname}"
-       git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  cd "${srcdir}/${_pkgname}"
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-       export GOPATH="${srcdir}"/go
-       cd "${srcdir}/${_pkgname}"
-       go mod vendor
-       version=r$pkgver ./gen/build.sh -mod=vendor -trimpath
-       # clean now to ensure makepkg --clean works
-       go clean -modcache
+  export GOPATH="${srcdir}"/go
+  cd "${srcdir}/${_pkgname}"
+  go mod vendor
+  version=r$pkgver ./gen/build.sh -mod=vendor -trimpath
+  # clean now to ensure makepkg --clean works
+  go clean -modcache
 }
 
 package() {
-       cd "${srcdir}/${_pkgname}"
-       install -Dm755 -t "${pkgdir}/usr/bin" ./lf
+  cd "${srcdir}/${_pkgname}"
+  install -Dm755 -t "${pkgdir}/usr/bin" ./lf
 
-       install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}" ./LICENSE
-       install -Dm644 -t "${pkgdir}/usr/share/doc/${pkgname}" ./README.md ./etc/lfrc.example
-       install -Dm644 -t "${pkgdir}/usr/share/${pkgname}" ./etc/lfcd.sh
-       install -Dm644 -t "${pkgdir}/usr/share/man/man1" ./lf.1
+  install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}" ./LICENSE
+  install -Dm644 -t "${pkgdir}/usr/share/doc/${pkgname}" ./README.md ./etc/lfrc.example
+  install -Dm644 -t "${pkgdir}/usr/share/${pkgname}" ./etc/lfcd.sh
+  install -Dm644 -t "${pkgdir}/usr/share/man/man1" ./lf.1
 
-       # vim
-       install -Dm644 -t "${pkgdir}/usr/share/vim/vimfiles/syntax" ./etc/lf.vim
-       install -Dm644 -t "${pkgdir}/usr/share/vim/vimfiles/ftdetect" ./etc/lf.vim
+  # vim
+  install -Dm644 -t "${pkgdir}/usr/share/vim/vimfiles/syntax" ./etc/lf.vim
+  install -Dm644 -t "${pkgdir}/usr/share/vim/vimfiles/ftdetect" ./etc/lf.vim
 
-       # fish
-       install -Dm644 -t "${pkgdir}/usr/share/fish/vendor_completions.d" ./etc/lf.fish
-       install -Dm644 -t "${pkgdir}/usr/share/fish/vendor_functions.d" ./etc/lfcd.fish
+  # fish
+  install -Dm644 -t "${pkgdir}/usr/share/fish/vendor_completions.d" ./etc/lf.fish
+  install -Dm644 -t "${pkgdir}/usr/share/fish/vendor_functions.d" ./etc/lfcd.fish
 }
+# vim:set ts=2 sw=2 et:
