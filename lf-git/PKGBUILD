@@ -2,7 +2,7 @@
 
 pkgname=lf-git
 _pkgname=lf
-pkgver=r16.r16.gec512df
+pkgver=r16.r18.g1186bf6
 pkgrel=1
 license=('MIT')
 pkgdesc='lf is a terminal file manager written in Go'
