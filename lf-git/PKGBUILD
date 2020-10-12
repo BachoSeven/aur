@@ -1,6 +1,6 @@
-# Mantainer: Ian Beringer <ian@ianberinger.com>
+# Mantainer: Francesco Minnocci
 
-pkgname=lf-git
+pkgname=lf-bachoseven-git
 _pkgname=lf
 pkgver=r16.r29.g6a28667
 pkgrel=1
