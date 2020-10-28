@@ -1,8 +1,8 @@
 # Mantainer: Ian Beringer <ian@ianberinger.com>
 
-pkgname=lf-git
+pkgname=lf-bachoseven-git
 _pkgname=lf
-pkgver=r16.r29.g6a28667
+pkgver=r17.r5.g279b0cf
 pkgrel=1
 license=('MIT')
 pkgdesc='lf is a terminal file manager written in Go'
