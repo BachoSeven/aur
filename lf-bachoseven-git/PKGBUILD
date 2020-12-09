@@ -1,8 +1,8 @@
-# Mantainer: Francesco Minnocci
+# Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 
 pkgname=lf-bachoseven-git
 _pkgname=lf
-pkgver=r17.r11.gd46ccfc
+pkgver=r17.r23.g90b3b16
 pkgrel=1
 license=('MIT')
 pkgdesc='lf is a terminal file manager written in Go'
