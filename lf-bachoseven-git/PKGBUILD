@@ -2,7 +2,7 @@
 
 pkgname=lf-bachoseven-git
 _pkgname=lf
-pkgver=r18.r10.g82f0310
+pkgver=r18.r17.g1e94f45
 pkgrel=1
 license=('MIT')
 pkgdesc='lf is a terminal file manager written in Go'
