@@ -18,7 +18,7 @@ source=(
 )
 sha256sums=(
   'SKIP'
-  '3794f05b2acf20b54836debe7dbe8ee945961454478ca64420fe59603e6ea40d'
+  '86b3a1bd0ad87a9cb6a5466805a55ec87b2369c654eb492a7297fdaf51c068b7'
 )
 
 pkgver() {
@@ -36,5 +36,6 @@ prepare() {
 package() {
 	cd "$srcdir/$_pkgname"
 	install -D -t "$pkgdir/usr/bin" "$_pkgname"
+  install -D -m644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
 # vim:set ts=2 sw=2 et:
