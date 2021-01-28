@@ -24,3 +24,4 @@ package() {
 	cd "$srcdir/$_pkgname"
 	install -D -t "$pkgdir/usr/bin" "$_pkgname"
 }
+# vim:set ts=2 sw=2 et:

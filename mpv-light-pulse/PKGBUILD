@@ -16,7 +16,7 @@ options=('!emptydirs')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 _tag='d5ae9f70ea1f21c1d3794df5345a6a9366188660' # git rev-parse v${pkgver}
-source=(git+https://github.com/mpv-player/mpv.git#tag=${_tag})
+source=("git+https://github.com/mpv-player/mpv.git#tag=${_tag}")
 sha256sums=(SKIP)
 
 prepare() {
@@ -54,3 +54,4 @@ package() {
 
   install -m644 DOCS/{encoding.rst,tech-overview.txt} "${pkgdir}"/usr/share/doc/mpv
 }
+# vim:set ts=2 sw=2 et:
