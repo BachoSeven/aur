@@ -1,0 +1,61 @@
+[1m--- /usr/bin/kunst	2021-01-28 15:37:59.000000000 +0100[0m
+[1m+++ kunst	2021-01-28 15:34:56.908337399 +0100[0m
+[36m@@ -8,7 +8,7 @@[0m
+ 
+ 
+ VERSION=1.3.2
+[31m-COVER=/tmp/kunst.jpg[0m
+[32m+COVER=/tmp/kunst.png[0m
+ MUSIC_DIR=~/Music/
+ SIZE=250x250
+ POSITION="+0+0"
+[36m@@ -138,7 +138,7 @@[0m
+ 
+ 	# Extract the album art from the mp3 file and dont show the messsy
+ 	# output of ffmpeg
+[31m-	ffmpeg -i "$MUSIC_DIR$(mpc current -f %file%)" "$COVER" -y &> /dev/null[0m
+[32m+	ffmpeg -i "$MUSIC_DIR/$(mpc current -f %file%)" "$COVER" -y &> /dev/null[0m
+ 
+ 	# Get the status of the previous command
+ 	STATUS=$?
+[36m@@ -148,7 +148,7 @@[0m
+         [ ! "$SILENT" ] && echo "kunst: extracted album art"
+ 		ARTLESS=false
+ 	else
+[31m-        DIR="$MUSIC_DIR$(dirname "$(mpc current -f %file%)")"[0m
+[32m+        DIR="$MUSIC_DIR/$(dirname "$(mpc current -f %file%)")"[0m
+         [ ! "$SILENT" ] && echo "kunst: inspecting $DIR"
+ 
+ 		# Check if there is an album cover/art in the folder.
+[36m@@ -164,8 +164,19 @@[0m
+     fi
+ 
+ 	if [ "$STATUS" -ne 0 ];then
+[31m-        [ ! "$SILENT" ] && echo "error: file does not have an album art"[0m
+[31m-		get_cover_online[0m
+[32m+		if [ "$(command -v exiftool)" ]; then[0m
+[32m+			SONG="$MUSIC_DIR/$(mpc --format "%file%" current)"[0m
+[32m+			PICTURE_TAG="-Picture"[0m
+[32m+[0m
+[32m+			if [ "$SONG" = *".m4a" ]; then[0m
+[32m+				PICTURE_TAG="-CoverArt"[0m
+[32m+			fi[0m
+[32m+			# Extract album cover using perl-image-exiftool[0m
+[32m+			exiftool -b "$PICTURE_TAG" "$SONG"  > "$COVER"[0m
+[32m+		else[0m
+[32m+			[ ! "$SILENT" ] && echo "error: file does not have an album art"[0m
+[32m+			get_cover_online[0m
+[32m+		fi[0m
+ 	fi
+ }
+ 
+[36m@@ -211,9 +222,6 @@[0m
+ 		update_cover
+ 
+ 		if [ "$ARTLESS" == true ];then
+[31m-			# Dhange the path to COVER because the music note[0m
+[31m-			# image is a png not jpg[0m
+[31m-			COVER=/tmp/kunst.png[0m
+ 
+ 			# Decode the base64 encoded image and save it
+ 			# to /tmp/kunst.png
