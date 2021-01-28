@@ -1,10 +1,11 @@
-# Have a look at https://github.com/archlinux/svntogit-community/commits/packages/mpv/trunk
+# Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
+# Keep an eye on https://github.com/archlinux/svntogit-community/commits/packages/mpv/trunk for changes
 
 _pkgname=mpv
-pkgname=${_pkgname}-bachoseven-light
+pkgname=${_pkgname}-light-pulse
 pkgver=0.33.0
 pkgrel=1
-pkgdesc="Free, open source, and cross-platform media player – with selection of features."
+pkgdesc="Free, open source, and cross-platform media player – with selection of features (pulse, dvd and cd support)."
 arch=(i686 x86_64)
 url="https://mpv.io"
 license=(GPL)
