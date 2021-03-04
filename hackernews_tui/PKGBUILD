@@ -1,6 +1,7 @@
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 
 pkgname=hackernews_tui
+_gitname=hackernews_tui
 pkgver=0.1.0
 pkgrel=1
 pkgdesc="A Terminal UI to browse hacker news."
@@ -12,19 +13,19 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/aome510/hackernews-TUI/arch
 sha256sums=("1945c0b42289008f754f44284c76604b1a92c7295090f44fdab40a73ccccb150")
 
 build() {
-    cd "$pkgname-$pkgver"
+    cd "${_gitname}-$pkgver"
 
     cargo build --release --locked --all-features --target-dir=target
 }
 
 check() {
-    cd "$pkgname-$pkgver"
+    cd "${_gitname}-$pkgver"
 
     cargo test --release --locked --target-dir=target
 }
 
 package() {
-    cd "$pkgname-$pkgver"
+    cd "${_gitname}-$pkgver"
 
     install -Dm755 target/release/${pkgname} -t "${pkgdir}/usr/bin"
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
