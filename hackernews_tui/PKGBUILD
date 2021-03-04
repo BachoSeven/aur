@@ -7,24 +7,24 @@ pkgdesc="A Terminal UI to browse hacker news."
 arch=("x86_64")
 url="https://github.com/aome510/hackernews-TUI"
 license=('MIT')
-makedepends=('cargo' 'git')
+makedepends=('cargo')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/aome510/hackernews-TUI/archive/v$pkgver.tar.gz")
 sha256sums=("1945c0b42289008f754f44284c76604b1a92c7295090f44fdab40a73ccccb150")
 
 build() {
-    cd $pkgname-$pkgver
+    cd "$pkgname-$pkgver"
 
-    cargo build --release --locked --target-dir=target
+    cargo build --release --locked --all-features --target-dir=target
 }
 
 check() {
-    cd $pkgname-$pkgver
+    cd "$pkgname-$pkgver"
 
     cargo test --release --locked --target-dir=target
 }
 
 package() {
-    cd $pkgname-$pkgver
+    cd "$pkgname-$pkgver"
 
     install -Dm755 target/release/${pkgname} -t "${pkgdir}/usr/bin"
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
