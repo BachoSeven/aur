@@ -8,7 +8,7 @@ arch=("x86_64")
 url="https://github.com/aome510/hackernews-TUI"
 license=('MIT')
 makedepends=('cargo' 'git')
-source=("$pkgname-$pkgver.tar.gz::git+https://github.com/aome510/hackernews-TUI/archive/v$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/aome510/hackernews-TUI/archive/v$pkgver.tar.gz")
 sha256sums=("1945c0b42289008f754f44284c76604b1a92c7295090f44fdab40a73ccccb150")
 
 build() {
