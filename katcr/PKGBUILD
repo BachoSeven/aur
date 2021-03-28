@@ -1,0 +1,38 @@
+# Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
+
+pkgname=katcr
+pkgver=3.0.4
+pkgrel=1
+pkgdesc='Search in multiple torrent sites from your CLI'
+url='https://github.com/XayOn/katcr'
+depends=('python' 'python-xdg' 'python-feedparser' 'python-aiohttp' 'python-cleo' 'python-aiogram' 'python-torrentmirror-git' 'python-cutie-git')
+checkdepends=('python-pytest' 'python-pytest-asyncio')
+makedepends=('python-setuptools' 'python-dephell')
+license=('GPL3')
+arch=('any')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/XayOn/$pkgname/archive/refs/tags/$pkgver.tar.gz")
+sha512sums=('9ffe05e0cfdcf7e2ea20db116817938e1c9713c2e02e4da9fdb34dacd8f975e2691cc38b6bb26940f1e339df3116554fafdc0d435e5c5cde8e255e31b3229eef')
+
+prepare() {
+	cd "${srcdir}/$pkgname-$pkgver"
+
+	dephell deps convert --from pyproject.toml --to setup.py
+}
+
+build(){
+  cd "${srcdir}/$pkgname-$pkgver"
+
+  python setup.py build
+}
+
+check(){
+    cd "${srcdir}/$pkgname-$pkgver"
+
+    pytest
+}
+
+package() {
+  cd "${srcdir}/$pkgname-$pkgver"
+  python setup.py install --prefix=/usr --root="$pkgdir/" --optimize=1 --skip-build
+}
+# vim:set ts=2 sw=2 et:
