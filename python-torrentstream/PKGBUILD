@@ -1,5 +1,6 @@
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 # Contributor: yochanamarqos
+
 pkgname=python-torrentstream
 _name=${pkgname#python-}
 pkgver=0.2.2
