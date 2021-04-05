@@ -2,17 +2,19 @@
 
 pkgname=kotatogram-dev-git
 _pkgname=kotatogram-desktop
-pkgver=r10043.7a67d7e1b
+pkgver=r10064.f18c0d97f
 pkgrel=1
 pkgdesc="Kotatogram – experimental Telegram Desktop fork - Dev branch"
 arch=(x86_64)
 url="https://github.com/kotatogram/kotatogram-desktop"
 license=(GPL3)
 depends=(
-	qt5-base
 	qt5-imageformats
+  gtk3
 	ffmpeg
 	openal
+  glibmm
+  kwayland
 	xz
 	lz4
 	xxhash
@@ -20,13 +22,14 @@ depends=(
 	minizip
 	openssl
 	libdbusmenu-qt5
-  fuse
 	hunspell
 )
 makedepends=(
 	git
 	python
+  microsoft-gsl
 	cmake
+  libtg_owt-git
 	ninja
 	tl-expected
 	range-v3
@@ -38,8 +41,9 @@ conflicts=('kotatogram-desktop')
 provides=('kotatogram-desktop')
 source=(
   "${_pkgname}::git+${url}.git"
+  "cmake_helpers::git+https://github.com/kotatogram/cmake_helpers.git"
 )
-sha512sums=('SKIP')
+sha512sums=('SKIP' 'SKIP')
 
 pkgver() {
   cd "${srcdir}/${_pkgname}"
@@ -47,24 +51,33 @@ pkgver() {
 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
-build() {
-	cd ${_pkgname}
+prepare() {
+  cd "${srcdir}/${_pkgname}"
 
-	cmake -B build -G Ninja . \
+  git submodule init
+  git config submodule.cmake.url "$srcdir/cmake_helpers"
+  git submodule update
+}
+
+build() {
+	cd "${srcdir}/${_pkgname}/"
+
+  cmake . -B build -G Ninja \
+    -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_C_FLAGS="-Werror" \
     -DCMAKE_CXX_FLAGS="-Werror" \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_EXE_LINKER_FLAGS="-s" \
-		-DTDESKTOP_API_TEST=ON \
+    -DTDESKTOP_API_TEST=ON \
     -DDESKTOP_APP_USE_PACKAGED=OFF \
     -DDESKTOP_APP_DISABLE_CRASH_REPORTS=OFF \
-		-DCMAKE_INSTALL_PREFIX=/usr
 
-	cmake --build build
+  ninja -C build
 }
 
 package() {
 	cd ${_pkgname}
 
-	DESTDIR="$pkgdir" cmake --install build
+	DESTDIR="$pkgdir" ninja -C build install
 }
 # vim:set ts=2 sw=2 et:
