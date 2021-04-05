@@ -8,8 +8,8 @@ pkgdesc="Torrentmirror python library and CLI access"
 arch=(any)
 url='https://github.com/XayOn/torrentmirror'
 license=('custom:none')
-depends=('python' 'python-robobrowser' 'python-cleo' 'python-werkzeug' 'python-docopt' 'python-tabulate' 'python-xdg>=5.0.1' 'python-pygogo')
-checkdepends=('yapf' 'python-pytest' 'python-pytest-cov' 'python-pylint' 'python-pytest-flake8' 'python-flake8-docstrings' 'tox')
+depends=('python' 'python-robobrowser' 'python-cleo' 'python-werkzeug' 'python-docopt' 'python-tabulate' 'python-xdg>=5.0.1' 'python-pygogo' 'yapf')
+checkdepends=('python-pytest' 'python-pytest-cov' 'python-pylint' 'python-pytest-flake8' 'python-flake8-docstrings')
 makedepends=('python-setuptools' 'git' 'python-dephell')
 provides=('torrentmirror')
 conflicts=('torrentmirror')
