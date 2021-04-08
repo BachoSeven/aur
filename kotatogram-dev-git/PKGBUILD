@@ -2,7 +2,7 @@
 
 pkgname=kotatogram-dev-git
 _pkgname=kotatogram-desktop
-pkgver=r10064.f18c0d97f
+pkgver=r10095.33246ef66
 pkgrel=1
 pkgdesc="Kotatogram – experimental Telegram Desktop fork - Dev branch"
 arch=(x86_64)
@@ -28,6 +28,8 @@ makedepends=(
 	git
 	python
   microsoft-gsl
+  # rlottie-tdesktop
+  # libtgvoip
 	cmake
   libtg_owt-git
 	ninja
@@ -62,15 +64,16 @@ prepare() {
 build() {
 	cd "${srcdir}/${_pkgname}/"
 
-  cmake . -B build -G Ninja \
+  cmake . \
+    -B build \
+    -G Ninja \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_C_FLAGS="-Werror" \
-    -DCMAKE_CXX_FLAGS="-Werror" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_EXE_LINKER_FLAGS="-s" \
     -DTDESKTOP_API_TEST=ON \
-    -DDESKTOP_APP_USE_PACKAGED=OFF \
-    -DDESKTOP_APP_DISABLE_CRASH_REPORTS=OFF \
+    -DDESKTOP_APP_DISABLE_CRASH_REPORTS=ON
+    # -DDESKTOP_APP_USE_PACKAGED_RLOTTIE=OFF \
+		# -DTDESKTOP_USE_PACKAGED_TGVOIP=OFF
 
   ninja -C build
 }
@@ -78,6 +81,6 @@ build() {
 package() {
 	cd ${_pkgname}
 
-	DESTDIR="$pkgdir" ninja -C build install
+  DESTDIR="$pkgdir" ninja -C build install
 }
 # vim:set ts=2 sw=2 et:
