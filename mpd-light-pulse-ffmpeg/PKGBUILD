@@ -11,13 +11,13 @@ pkgname=mpd-light-pulse-ffmpeg
 pkgver=0.22.3
 _majorver=0.22
 pkgrel=1
-pkgdesc='Flexible, powerful, server-side application for playing music. Light version without openal, ao, jack, modplug, shout, sidplay, soundcloud, wavpack, fluidsynth, avahi, smbclient, zziplib and gme support.'
+pkgdesc='Flexible, powerful, server-side application for playing music. Light version without openal, ao, jack, modplug, shout, sidplay, soundcloud, fluidsynth, avahi, smbclient, zziplib and gme support.'
 url='https://www.musicpd.org/'
 license=('GPL2')
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 depends=('alsa-lib' 'flac' 'libogg' 'ffmpeg' 'libpulse' 'libcdio-paranoia' 'audiofile' 'libmad' 'curl' 'faad2' 'sqlite'
          'libmms' 'libid3tag' 'libmpdclient' 'icu' 'libupnp' 'libvorbis'
-         'libnfs' 'libsamplerate' 'libsoxr' 'liburing')
+         'libnfs' 'libsamplerate' 'libsoxr' 'liburing' 'wavpack')
 # So files
 #depends+=('libFLAC.so' 'libasound.so' 'libaudiofile.so' 'libcurl.so'
 #          'libfaad.so' 'libicui18n.so' 'libicuuc.so' 'libid3tag.so'
@@ -58,7 +58,6 @@ build() {
 	       '-Dshout=disabled'
 	       '-Dsidplay=disabled'
 	       '-Dsoundcloud=disabled'
-	       '-Dwavpack=disabled'
 	       '-Dzzip=disabled'
 	       '-Dzeroconf=disabled'
 	       '-Dsmbclient=disabled'
