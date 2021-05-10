@@ -1,0 +1,25 @@
+# Maintainer: Benjamin Abendroth <braph93@gmx.de>
+
+pkgname=nbfc-linux
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Lightweight C port of NoteBook FanControl (no Mono required)"
+arch=('i686' 'x86_64')
+url="https://github.com/braph/nbfc-linux"
+optdepends=('dmidecode: for getting recommended notebook configurations')
+makedepends=('lm_sensors')
+license=('GPL3')
+conflicts=('nbfc')
+provides=('nbfc')
+source=("https://github.com/braph/nbfc-linux/archive/refs/tags/${pkgver}.tar.gz")
+md5sums=('a61e81562a8d43f1bef9a3c66604e4b3')
+
+build() {
+  cd nbfc-linux-${pkgver}
+  make
+}
+
+package() {
+  cd nbfc-linux-${pkgver}
+  make DESTDIR="${pkgdir}" install
+}
