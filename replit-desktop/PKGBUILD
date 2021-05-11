@@ -26,3 +26,4 @@ package() {
     install -d -m755 "${pkgdir}/usr/bin"
     ln -sr "${pkgdir}/opt/${pkgname}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
 }
+# vim:set ts=2 sw=2 et:

@@ -25,3 +25,4 @@ package() {
     cd "$srcdir/vuetorrent"
     find . -type f -exec install -D '{}' "$pkgdir/usr/share/$pkgname/{}" ';'
 }
+# vim:set ts=2 sw=2 et:

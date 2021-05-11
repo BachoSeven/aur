@@ -48,3 +48,4 @@ package() {
 	mkdir -p "${pkgdir}/usr/share/licenses/nbfc"
 	install -D -m755 LICENSE.md "${pkgdir}/usr/share/licenses/nbfc/LICENSE"
 }
+# vim:set ts=2 sw=2 et:

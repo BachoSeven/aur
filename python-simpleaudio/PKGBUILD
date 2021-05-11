@@ -29,3 +29,4 @@ package() {
     PYTHONHASHSEED='0' python setup.py install --root="$pkgdir" --optimize='1' --skip-build
     install -D -m644 LICENSE.txt "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
+# vim:set ts=2 sw=2 et:
