@@ -12,11 +12,11 @@ pkgname=mpd-light-pulse-ffmpeg
 pkgver=0.22.6
 _majorver=0.22
 pkgrel=1
-pkgdesc='Flexible, powerful, server-side application for playing music. Light version without openal, ao, jack, modplug, shout, sidplay, soundcloud, wavpack, fluidsynth, avahi, smbclient, zziplib and gme support.'
+pkgdesc='Flexible, powerful, server-side application for playing music. Light version without openal, ao, jack, modplug, shout, sidplay, soundcloud, wavpack, fluidsynth, avahi, zziplib and gme support.'
 url='https://www.musicpd.org/'
 license=('GPL2')
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
-depends=('alsa-lib' 'flac' 'libogg' 'ffmpeg' 'libpulse' 'libcdio-paranoia' 'audiofile' 'libmad' 'curl' 'faad2' 'sqlite'
+depends=('alsa-lib' 'flac' 'libogg' 'ffmpeg' 'libpulse' 'libcdio-paranoia' 'audiofile' 'libmad' 'curl' 'faad2' 'smbclient' 'sqlite'
          'libmms' 'libid3tag' 'libmpdclient' 'icu' 'libupnp' 'libvorbis'
          'libnfs' 'libsamplerate' 'libsoxr' 'liburing')
 # So files
@@ -33,7 +33,7 @@ source=("https://www.musicpd.org/download/mpd/${_majorver}/mpd-${pkgver}.tar.xz"
         'mpd.conf')
 sha512sums=('5e417204e24d11fa609740ae92bc1d796aad2d63537655f655074d829cd79cadaf1ca025171dcf5486c1e557cc946152c21e299286b1cb74cc342da2b1f41343'
             '3608f8b0418aa5527917c35308aeca80357c3cf1834cceeade2eaab7fa736117c0b3143cf225478441ffc533b45ff1e8c5579a2e1aa432a4db5ca4cef2dd04e1'
-            'f3eaa25925887ae5df52da0119a77729b5761c175a22117ab15a1636b141f4b159db75dc4e9a52e0d16b2bc4b0f617a4e0838a8d3624f98706beb3387971c660')
+            '25a823740d92da8e186916701413114142eb6ad91a172c592e68b569c8e4f50fa99580e555ccf6cd31fc4f55a09bfe0278efa46e4e76ee0fe02846292fadf3c1')
 backup=('etc/mpd.conf')
 install=mpd.install
 
@@ -62,7 +62,6 @@ build() {
          '-Dwavpack=disabled'
 	       '-Dzzip=disabled'
 	       '-Dzeroconf=disabled'
-	       '-Dsmbclient=disabled'
 	       '-Dqobuz=disabled'
 	       '-Dtidal=disabled'
 	       '-Diso9660=disabled'
