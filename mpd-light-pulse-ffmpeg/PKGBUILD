@@ -62,6 +62,7 @@ build() {
          '-Dwavpack=disabled'
 	       '-Dzzip=disabled'
 	       '-Dzeroconf=disabled'
+	       '-Dsmbclient=disabled'
 	       '-Dqobuz=disabled'
 	       '-Dtidal=disabled'
 	       '-Diso9660=disabled'
