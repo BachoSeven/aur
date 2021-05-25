@@ -1,0 +1,30 @@
+# Mantainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
+# Contributor: Paulo Diovani <paulo@diovani.com>
+
+pkgname=torrentflix
+pkgver=9.0.7
+pkgrel=4
+pkgdesc="Nodejs cli app to search torrent sites and stream using peerflix"
+arch=('any')
+url="https://www.npmjs.com/package/torrentflix"
+license=('MIT')
+depends=('nodejs' 'peerflix')
+makedepends=('npm')
+options=(!emptydirs)
+source=("https://github.com/ItzBlitz98/${pkgname}/archive/v${pkgver}.tar.gz")
+sha256sums=('e83a5ce8c7aecb28b30c8263fc0ab388ce5c64a9cda06461e4819fff211d00ef')
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  install -Dm644 LICENSE.txt -t "${pkgdir}/usr/share/licenses/${pkgname}"
+  npm install --cache ../cache --user root -g --production --prefix "${pkgdir}/usr" "../v${pkgver}.tar.gz"
+
+  # Cleanup (module already installed by the peerflix dependency)
+  rm -rf "$pkgdir/usr/lib/node_modules/root"
+
+  # npm makes some directories world writable
+  find "$pkgdir/usr" -type d -exec chmod 755 '{}' +
+}
+
+# vim:set ts=2 sw=2 et:
