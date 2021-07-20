@@ -1,9 +1,8 @@
-# WIP
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 
 pkgname=soryu-git
 _pkgname=soryu
-pkgver=r7.6211043
+pkgver=r8.e371d90
 pkgrel=1
 license=('Unlicense')
 pkgdesc='Glitch an image in the terminal'
@@ -23,23 +22,31 @@ pkgver() {
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
+prepare() {
+  # prevent creation of a `go` directory in one's home.
+  # this directory cannot be removed with even `rm -rf` unless one becomes root
+  # or changes the write permissions.
+  export GOPATH="${srcdir}/gopath"
+  go clean -modcache
+}
+
 build() {
   cd "${srcdir}/${_pkgname}"
 
-  export GOPATH="${srcdir}"
-  go build \
-   -trimpath \
-   -buildmode=pie \
-   -mod=readonly \
-   -modcacherw \
-   -ldflags "-linkmode external -extldflags \"${LDFLAGS}\"" \
-   -o soryu main.go
+  export CGO_LDFLAGS="${LDFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export GOFLAGS="-buildmode=pie -trimpath -modcacherw -mod=vendor"
+  go mod vendor
+  go build -o $_pkgname .
+
   go clean -modcache
 }
 
 package() {
   cd "${srcdir}/${_pkgname}"
 
-  install -Dm755 -t "${pkgdir}/usr/bin" ./soryu
+  install -Dm755 -t "${pkgdir}/usr/bin" $_pkgname
 }
 # vim:set ts=2 sw=2 et:
