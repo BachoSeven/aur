@@ -1,0 +1,36 @@
+# WIP
+# Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
+# Contributor: Jonas Heinrich <onny@project-insanity.org>
+# Contributor: Jonas Heinrich <onny@project-insanity.org>
+# Contributor: Alex Smith <azphreal19@protonmail.com
+
+pkgname=koel
+pkgver=5.1.4
+pkgrel=1
+pkgdesc="A personal music streaming server that works."
+arch=('any')
+url="https://koel.dev/"
+license=('MIT')
+depends=('php' 'python3' 'mysql' 'openssl')
+makedepends=('composer' 'nodejs-lts-fermium')
+backup=('usr/share/webapps/koel/.env')
+install="${pkgname}.install"
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/${pkgname}/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz")
+sha512sums=('c4507936acc9b8242502e27f5ed5441ca8651f23c650ba7462d79211bc70bf2b060a204b93d401afedc0f44f2411bb0865cd4993281050d9afd89fbdcf9bb7ff')
+
+prepare() {
+  cp "${srcdir}/${pkgname}-${pkgver}"/.env{.example,}
+	sed -i 's|FFMPEG_PATH=/usr/local/bin/ffmpeg|FFMPEG_PATH=/usr/bin/ffmepg|g' "${srcdir}/${pkgname}-${pkgver}/.env.example"
+}
+
+build() {
+	cd "$pkgname-$pkgver"
+
+	composer install
+}
+
+package() {
+	mkdir -p "${pkgdir}/usr/share/webapps"
+	cp -r "${pkgname}-${pkgver}" "${pkgdir}/usr/share/webapps/${pkgname}"
+}
+# vim:set ts=2 sw=2 et:
