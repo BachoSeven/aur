@@ -9,7 +9,7 @@
 # Contributor: Levente Polyak <anthraxx[at]archlinux[dot]org>
 
 pkgname=mpd-light-pulse-ffmpeg
-pkgver=0.22.6
+pkgver=0.22.11
 _majorver=0.22
 pkgrel=1
 pkgdesc='Flexible, powerful, server-side application for playing music. Light version without openal, ao, jack, modplug, shout, sidplay, soundcloud, wavpack, fluidsynth, avahi, zziplib and gme support.'
@@ -31,7 +31,7 @@ replaces=('mpd')
 source=("https://www.musicpd.org/download/mpd/${_majorver}/mpd-${pkgver}.tar.xz"
         'mpd.tmpfile'
         'mpd.conf')
-sha512sums=('5e417204e24d11fa609740ae92bc1d796aad2d63537655f655074d829cd79cadaf1ca025171dcf5486c1e557cc946152c21e299286b1cb74cc342da2b1f41343'
+sha512sums=('c53d386d42c2360502aad5e7574ae5ff76a20df037696989f9e1700f9cffb88afdd329cce758067356c59308d0cbcf3ba3ccf6f013e2fcec54ddf08bd0212b43'
             '3608f8b0418aa5527917c35308aeca80357c3cf1834cceeade2eaab7fa736117c0b3143cf225478441ffc533b45ff1e8c5579a2e1aa432a4db5ca4cef2dd04e1'
             '25a823740d92da8e186916701413114142eb6ad91a172c592e68b569c8e4f50fa99580e555ccf6cd31fc4f55a09bfe0278efa46e4e76ee0fe02846292fadf3c1')
 backup=('etc/mpd.conf')
@@ -64,7 +64,6 @@ build() {
 	       '-Dzeroconf=disabled'
 	       '-Dsmbclient=disabled'
 	       '-Dqobuz=disabled'
-	       '-Dtidal=disabled'
 	       '-Diso9660=disabled'
 	       '-Dfluidsynth=disabled'
 	       '-Dmikmod=disabled'
