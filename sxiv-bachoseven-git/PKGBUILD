@@ -6,7 +6,7 @@
 
 _name=sxiv
 pkgname="${_name}-bachoseven-git"
-pkgver=v26.r4.gf68fb4d
+pkgver=v26.r5.g1f9b9f5
 pkgrel=1
 pkgdesc="Sxiv fork which opens all files in the input file's directory, with some custom bindings."
 arch=('i686' 'x86_64')
