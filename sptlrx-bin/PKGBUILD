@@ -1,4 +1,5 @@
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
+
 _name=sptlrx
 pkgname=sptlrx-bin
 pkgver=0.1.0
