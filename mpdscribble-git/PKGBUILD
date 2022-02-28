@@ -18,8 +18,8 @@ makedepends=('boost' 'systemd' 'meson' 'ninja' 'git')
 provides=("mpdscribble")
 conflicts=("mpdscribble")
 install=$_pkgname.install
-source=("${_pkgname}::git+${url}.git")
-sha256sums=('SKIP')
+source=("${_pkgname}::git+${url}.git" 'mpdscribble.sysusers')
+sha256sums=('SKIP' 'SKIP')
 
 prepare() {
   cd "${srcdir}/${_pkgname}"
@@ -46,6 +46,8 @@ package() {
     "${pkgdir}"/usr/lib/systemd/system/mpdscribble@.service
   install -Dm644 build/systemd/user/mpdscribble.service \
     "${pkgdir}"/usr/lib/systemd/user/mpdscribble.service
+  install -Dm644 ${srcdir}/mpdscribble.sysusers \
+    "${pkgdir}"/usr/lib/sysusers.d/mpdscribble.conf
 
   # example config
   install -Dm644 doc/mpdscribble.conf \
