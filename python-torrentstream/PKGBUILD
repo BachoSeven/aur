@@ -1,9 +1,10 @@
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 # Contributor: yochanamarqos
+## TODO Fix package
 
 pkgname=python-torrentstream
 _name=${pkgname#python-}
-pkgver=0.2.2
+pkgver=0.3.1
 pkgrel=1
 pkgdesc="Python simple BitTorrent streaming library based on libtorrent"
 arch=('any')
@@ -12,7 +13,7 @@ license=('none')
 depends=('python' 'python-async-timeout' 'python-rich' 'libtorrent')
 makedepends=('python-setuptools' 'python-dephell')
 source=("https://pypi.org/packages/source/${_name:0:1}/$_name/$_name-$pkgver.tar.gz")
-sha256sums=('374bfd2c3dcf5051d0464aeac13564cb17776f25bb7708d91167d4df74cc83da')
+sha256sums=('3b514fedaf3500386f665cdf22454286871d99eb983f5551b2a9afd212fa04c0')
 
 prepare() {
 	cd "$_name-$pkgver"
