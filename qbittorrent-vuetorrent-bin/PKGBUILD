@@ -1,9 +1,10 @@
+# TODO
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 # Contributor: Falk Höppner <falk hoppner se>
 
 pkgname=qbittorrent-vuetorrent-bin
 _pkgname=vuetorrent
-pkgver=0.17.1
+pkgver=0.18.0
 pkgrel=1
 pkgdesc='The sleekest looking WebUI for qBittorrent made with Vue.js!'
 arch=('any')
