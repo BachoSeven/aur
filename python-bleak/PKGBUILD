@@ -2,7 +2,7 @@
 
 pkgname=python-bleak
 _pkgname=bleak
-pkgver=0.16.0
+pkgver=0.17.0
 pkgrel=1
 pkgdesc="Bluetooth Low Energy platform Agnostic Klient for Python"
 arch=(any)
@@ -12,7 +12,7 @@ depends=('python' 'python-dbus-next' 'python-service-identity')
 # checkdepends=('python-pytest' 'python-pytest-cov' 'python-pytest-runner')
 makedepends=('python-setuptools' 'bluez-utils')
 source=("${_pkgname}-${pkgver}.tar.gz::https://github.com/hbldh/$_pkgname/archive/v$pkgver.tar.gz")
-sha512sums=('1616f3dbe7f60d5cef4c7c1b22547f2478cdbb8623037c5a45012d48885c52b37abea72ae9da248ec4965291fed1681a469c92164f3a7329c1b7cf64c40457e3')
+sha512sums=('8696022fc70865cf392b0aacff723858b8a078b60ba5099c83aa75aed44dae4eed341dc7a3a831b4c45fd3f1f21b193857bd576cd0a76e7cd61bf4bea7683001')
 
 build() {
   cd $_pkgname-$pkgver
