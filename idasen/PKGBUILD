@@ -1,17 +1,17 @@
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 
 pkgname=idasen
-pkgver=0.9.1
-pkgrel=2
+pkgver=0.9.2
+pkgrel=1
 pkgdesc='Python API and CLI for the ikea IDÅSEN standing desk.'
 url='https://github.com/newAM/idasen'
 depends=('python' 'python-pyaml' 'python-bleak' 'python-voluptuous')
 # checkdepends=('python-pytest' 'python-pytest-asyncio' 'python-pytest-cov')
-makedepends=('python-build' 'python-installer' 'python-poetry')
+makedepends=('python-build' 'python-installer' 'python-poetry-core' 'python-wheel')
 license=('MIT')
 arch=('any')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/newAM/$pkgname/archive/v$pkgver.tar.gz")
-sha512sums=('635a095ce8017c75891ffe6aa70824bec7771aec311a81e0020e579f1ff24c50c0845f2480b566670db5c78d55cd7fbcd70a6ac1b4329ed40e029f7af577bdb6')
+sha512sums=('4d71b6fdd0645343cb10d2fef971d9a7776c548fa8eb16240060f8e49ac25109acf3668270b0269f6602cc5b30a6c5f43b113c003bad7d5b13f0b7e377e1504a')
 
 build(){
   cd "${srcdir}/$pkgname-$pkgver"
