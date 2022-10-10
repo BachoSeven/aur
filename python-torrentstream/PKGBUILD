@@ -5,29 +5,25 @@
 pkgname=python-torrentstream
 _name=${pkgname#python-}
 pkgver=0.3.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Python simple BitTorrent streaming library based on libtorrent"
 arch=('any')
 url="https://github.com/XayOn/torrentstream"
 license=('none')
 depends=('python' 'python-async-timeout' 'python-rich' 'libtorrent')
-makedepends=('python-setuptools' 'python-dephell')
+makedepends=('python-build' 'python-installer' 'python-wheel' 'python-poetry-core')
 source=("https://pypi.org/packages/source/${_name:0:1}/$_name/$_name-$pkgver.tar.gz")
 sha256sums=('3b514fedaf3500386f665cdf22454286871d99eb983f5551b2a9afd212fa04c0')
 
-prepare() {
-	cd "$_name-$pkgver"
-	dephell deps convert --from pyproject.toml --to setup.py
-}
-
 build() {
 	cd "$_name-$pkgver"
-	python setup.py build
+
+  python -m build --wheel --no-isolation
 }
 
 package() {
 	cd "$_name-$pkgver"
-	export PYTHONHASHSEED=0
-	python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+
+  python -m installer --destdir="$pkgdir" dist/*.whl
 }
 # vim:set ts=2 sw=2 et:
