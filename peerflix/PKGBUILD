@@ -13,13 +13,13 @@ depends=('nodejs')
 makedepends=('npm')
 options=(!emptydirs)
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/mafintosh/${pkgname}/archive/v${pkgver}.tar.gz"
-        "pullrequests.patch")
+        "patch.diff")
 sha256sums=('4255940099097670cce308e643c510a05936fa3720a35f25b5ef4c3ce185b80d'
             '263b0931c6728679ce74ee960b0a1be84f0dc513bd5a6e26d972bfb57022d95c')
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  patch -Np1 -i "$srcdir/pullrequests.patch"
+  patch -Np1 -i "$srcdir/patch.diff"
   tar -C "${srcdir}" -czf "../patched.tar.gz" "${pkgname}-${pkgver}"
 }
 
