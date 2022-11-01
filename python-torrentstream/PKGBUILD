@@ -1,6 +1,6 @@
+# TODO Fix build
 # Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
 # Contributor: yochanamarqos
-## TODO Fix package
 
 pkgname=python-torrentstream
 _name=${pkgname#python-}
