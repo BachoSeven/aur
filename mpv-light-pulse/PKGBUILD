@@ -5,8 +5,8 @@
 
 _pkgname=mpv
 pkgname=${_pkgname}-light-pulse
-_tag='3996724d3fa1c51cc7998f3de2e22e2c99e6d270' # git rev-parse v${pkgver}
-pkgver=0.36.0
+_tag='807b9343ef911d138950411cdb83c16a151d2018' # git rev-parse v${pkgver}
+pkgver=0.37.0
 pkgrel=1
 pkgdesc="Free, open source, and cross-platform media player – with selection of features (pulse, dvd and cd support)."
 arch=(i686 x86_64)
@@ -28,6 +28,7 @@ sha256sums=('SKIP')
 build() {
   cd ${_pkgname}
 
+  # actual downstream now uses meson...
   waf configure --prefix=/usr \
     --confdir=/etc/mpv \
     --enable-cdda \
@@ -55,6 +56,7 @@ package() {
     "$pkgdir"/usr/share/doc/mpv
 
   install -m0644 TOOLS/lua/* \
+  install -m0644 TOOLS/{umpv,mpv_identify.sh,stats-conv.py,idet.sh,lua/*} \
     -D -t "$pkgdir"/usr/share/mpv/scripts
 }
 # vim:set ts=2 sw=2 et:
