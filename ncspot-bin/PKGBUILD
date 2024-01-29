@@ -1,4 +1,5 @@
-# Maintainer: A. Husen <hi@husen.id>
+# Maintainer: Francesco Minnocci <ascoli dot minnocci at gmail dot com>
+
 pkgname=ncspot-bin
 _pkgname=ncspot
 pkgver=1.0.0
