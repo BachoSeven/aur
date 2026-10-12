@@ -4,7 +4,7 @@
 pkgname=kunst-git
 _pkgname=kunst
 pkgver=20240106
-pkgrel=1
+pkgrel=2
 pkgdesc="kunst is a daemon that extracts the album art from the songs playing in mpd."
 arch=('any')
 url="https://github.com/sdushantha/kunst"
@@ -18,7 +18,7 @@ source=(
   exiftool.patch
 )
 sha512sums=('SKIP'
-            'f519618284631fe4dc00d93497fff923302882892a5c47142394c1fc82a1bc63f22f33bd8ad630be97cfc32e456af515614566e43b16b3e7c88dd2cd057f3104')
+            '54f8458fff40f286d3a1316c9d01e6b610f2ff487bcc33d4f335a19ff3df8db1c73b96e1927948741b832eaeb39e1eaca0c7ffbcf86764a30aeab7ffebd4a074')
 
 pkgver() {
 	cd "$srcdir/$_pkgname"

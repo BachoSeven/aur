@@ -1,6 +1,11 @@
 --- a/kunst
 +++ b/kunst
-@@ -13,6 +13,8 @@
+@@ -9,10 +9,12 @@
+ 
+ VERSION=1.3.4
+ TMP=${TMPDIR:-/tmp}
+-COVER=$TMP/kunst.jpg
++COVER=$TMP/kunst/kunst.jpg
  MUSIC_DIR="${KUNST_MUSIC_DIR:-~/Music}"
  SIZE="${KUNST_SIZE:-250x250}"
  POSITION="${KUNST_POSITION:-+0+0}"
@@ -80,7 +85,16 @@
      for dependency in "${dependencies[@]}"; do
          type -p "$dependency" &>/dev/null || {
              logError "could not find '${dependency}', is it installed?"
-@@ -221,12 +242,8 @@
+@@ -217,16 +238,17 @@
+     # Flag to run some commands only once in the loop
+     FIRST_RUN=true
+ 
++    # Keep the cover in its own directory: our sxiv fork opens every
++    # image in the cover's directory, so sharing /tmp would show
++    # unrelated images instead of the album art
++    mkdir -p "$(dirname "$COVER")"
++
+     while true; do
          update_cover
  
          if [ "$ARTLESS" == true ];then
@@ -94,7 +108,7 @@
              echo "$MUSIC_NOTE" | base64 --decode > "$COVER"
          fi
  
-@@ -235,11 +252,12 @@
+@@ -235,11 +257,12 @@
          if [ "$FIRST_RUN" == true ]; then
              FIRST_RUN=false
  
@@ -110,7 +124,7 @@
              echo $! >"$TMP/kunst.pid"
          fi
  
-@@ -253,9 +271,11 @@
+@@ -253,9 +276,11 @@
  }
  
  # Disable CTRL-Z because if we allowed this key press,
